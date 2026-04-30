@@ -1,0 +1,3 @@
+YENI KULLANICI: Muhammed | Bakiye: 0.00
+ISLEM: Muhammed | 120000.00 TL Yatirdi | Yeni Bakiye: 120000.00
+ISLEM: Muhammed | 1879.00 TL Cekti | Yeni Bakiye: 118121.00
