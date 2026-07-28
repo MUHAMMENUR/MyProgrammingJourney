@@ -1,33 +1,39 @@
 #include <string>
-#include <iostream>
 #include <vector>
+#include <iostream>
 using namespace std;
-string JoinString(vector<string> vString, string Delim)
-{
-string S1="";
-for (string& s : vString)
-{
-S1 = S1 + s + Delim;
+
+
+
+string Joinstring(vector <string>& vecstring, string delimiter) {
+
+	string str = "";
+	for (auto& s : vecstring) {
+		str =str+ s + delimiter;
+	}
+	 return str.substr(0, str.length() - delimiter.length()); ;
 }
-return S1.substr(0,S1.length()-Delim.length());
-}
-string JoinString(string arrString[],short Length, string Delim)
-{
-string S1 = "";
-for (short i=0;i< Length;i++)
-{
-S1 = S1 + arrString[i] + Delim;
-}
-return S1.substr(0, S1.length() - Delim.length());
+
+
+string Joinstring(string str[], short size, string delimiter) {
+	string result = "";
+	for (int i = 0; i < size; i++) {
+		result = result + str[i] + delimiter;
+	}
+	return result.substr(0, result.length() - delimiter.length());
+	
 }
 
 int main()
 {
-vector<string> vString = { "Mohammed","Faid","Ali","Maher" };
-string arrString[]= { "Mohammed","Faid","Ali","Maher" };
-cout << "\nVector after join: \n";
-cout << JoinString(vString, " ");
-cout << "\n\nArray after join: \n";
-cout << JoinString(arrString,4, " ");
-system("pause>0");
+	vector <string> vecstring = { "Muhammed","Nur","Sanda","Kanco" };
+	string str[] = { "Muhammed","Nur","Sanda","Kanco" };
+	short size = sizeof(str) / sizeof(str[0]);
+	cout << "Join string: " << endl;
+	cout << Joinstring(vecstring, " ") << endl;
+	cout << Joinstring(str, size, " ") << endl;
+
+	system("pause>0");
+	
 }
+
