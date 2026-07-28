@@ -1,84 +1,66 @@
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
 #include <string>
 #include <vector>
 
 using namespace std;
 
-// Vector containing all standard vowel characters
-// Defined globally or within the function for comparison
-vector <char> Vowel = { 'a', 'e', 'i', 'o', 'u' };
-
-
-
 /**
- * Function: ReadString
+ * Function: Readstring
  * --------------------
- * Prompts the user to input a full sentence.
- * @return The complete string input.
+ * Prompts the user to enter a full string/sentence.
+ * Uses getline to read the complete input line including spaces.
+ * 
+ * @return The full text string entered by the user.
  */
-string ReadString() {
-	string Input;
-	cout << "Enter a string: ";
-	getline(cin,Input);
-	return Input;
+string Readstring() {
+    string input;
+    cout << "Enter a string: ";
+    getline(cin, input);
+    return input;
 }
 
 /**
- * Function: PrintWord
- * -------------------
- * Parses an input string and prints each word on a new line.
- * Handles trailing words and prevents empty lines caused by consecutive spaces.
- *
- * @param InputString The full sentence to break down into words.
+ * Function: PrintEachWordInString
+ * -------------------------------
+ * Parses a string using std::string::find and std::string::erase.
+ * Prints each word on a new line and calculates the total word count.
+ * 
+ * @param str The input string to parse and count words from.
  */
-void PrintWord(string InputString) {
-	cout << "Words in string are:" << endl;
-	string word = "";
-	short Counter = 0;
-	// Iterate through every character in the string
-	for (char c : InputString) {
-		if (c == ' ') {
-			// Print the accumulated word when a delimiter (space) is met
-			if (!word.empty()) {
-				cout << word << endl;
-				word.clear();// Reset accumulator for the next word
-				Counter++;// Increment word count
-			}
-		}
-		else {
-			word += c;// Build the word character by character
-		}
-	}
-	if (!word.empty()) {
-		cout << word << endl;
-		Counter++;// Increment for the last word if it exists
-	}
-	cout << "Total number of words: " << Counter << endl;
+void PrintEachWordInString(string str) {
+    string delimiter = " ";
+    short pos = 0;
+    string sWord;
+    short Counter = 0; // Word counter initialization
+
+    // Loop through the string while spaces (delimiters) are found
+    while ((pos = str.find(delimiter)) != std::string::npos) {
+        sWord = str.substr(0, pos); // Extract the word before the space
+        
+        if (sWord != "") {
+            cout << sWord << endl; // Print the extracted word
+            Counter++;            // Increment word counter
+        }
+
+        // Erase the processed word and its space from the original string
+        str.erase(0, pos + delimiter.length());
+    }
+
+    // Process the final remaining word left in the string (after the last space)
+    if (str != "") {
+        cout << str << endl;
+        Counter++; // Increment count for the final word
+    }
+
+    cout << "\nTotal Words: " << Counter << endl;
 }
-
-
-
-
-
-
 
 int main() {
+    // Step 1: Read string input from user
+    string input = Readstring();
 
-	
-	// Step 1: Read full text line from user
-	string InputString = ReadString();
+    // Step 2: Extract, print words, and display total count
+    PrintEachWordInString(input);
 
-
-
-	// Step 2: Extract and display each word independently
-	PrintWord(InputString);
-
-
-	system("pause>0");
-
-	return 0;
-
-
+    return 0;
 }
