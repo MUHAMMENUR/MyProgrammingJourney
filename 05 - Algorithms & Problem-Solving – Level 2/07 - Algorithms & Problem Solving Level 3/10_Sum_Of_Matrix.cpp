@@ -27,20 +27,16 @@ void GenerateRandomMatrix(int matrix1[3][3]) {
 			
 
 		}
-		// Break line after printing all columns of the current row to maintain matrix shape
-		cout << endl;
+		
 	}
 }
 
 
 
-/**
- * Prints the 3x3 matrix in a clean grid format.
- * * @param Matrix The 3x3 2D array to be displayed.
- */
+
 void PrintMatrix(int Matrix[3][3]) {
 	for (int i = 0; i < 3; i++) {
-		// Iterate through rows and columns to display the grid
+		
 		for (int j = 0; j < 3; j++) {
 			cout << Matrix[i][j] << " ";
 		}
@@ -49,27 +45,23 @@ void PrintMatrix(int Matrix[3][3]) {
 }
 
 
-
 /**
- * Performs standard algebraic Matrix Multiplication (Row x Column).
- * @param matrix1 The first source 3x3 matrix.
- * @param matrix2 The second source 3x3 matrix.
- * @param result The destination 3x3 matrix to store the calculated product.
+ * Calculates the sum of all elements in a 3x3 matrix.
+ * @param matrix The 3x3 2D array to be summed.
+ * @return The accumulated sum of all elements as an integer.
  */
-void MultiplyMatrices(int matrix1[3][3], int matrix2[3][3],int result[3][3]) {
+int  SumMatrix(int matrix[3][3]) {
+	int Sum = 0;
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
-			result[i][j]=matrix1[i][j]*matrix2[i][j];
-			
+			Sum += matrix[i][j];
 
-			
-			
-			
 		}
-		
+
 	}
-	
+	return Sum;
 }
+
 
 
 
@@ -77,26 +69,20 @@ int main() {
 	srand(static_cast<unsigned int>(time(0))); // Seed the random number generator with the current time)
 	// Declare a static 3x3 matrix of integers
 	int matrix1[3][3];
-	int matrix2[3][3];
-
-
-		
 	
-	int Result[3][3] = {0};
+
+
+	// Step 1: Populate the matrix with random integers
 	GenerateRandomMatrix(matrix1);
 	cout << "Matrix 1: " << endl;
+
+	// Step 2: Display the full initial matrix
 	PrintMatrix(matrix1);
-	GenerateRandomMatrix(matrix2);
-	cout << "Matrix 2: " << endl;
-	PrintMatrix(matrix2);
-	MultiplyMatrices(matrix1, matrix2, Result);
-	cout << "Result: " << endl;
-	PrintMatrix(Result);
 
-
-	// Step 2: Display the formatted matrix on the screen
-
-	
+	// Step 3: Call the function to calculate the sum and display it
+	cout << "Sum of matrix is:";
+	int Sum=SumMatrix(matrix1);
+	cout << Sum;
 
 	return 0;
 
