@@ -1,0 +1,67 @@
+#include <string>
+#include <vector>
+#include <iostream>
+using namespace std;
+
+
+
+string Readstring(string str1) {
+	string str = "";
+	cout << str1;
+	getline(cin, str);
+	return str;
+
+}
+
+
+vector <string> SplitString(string str, string delimiter) {
+	short pos = 0;
+	string sWord;
+	vector <string> words;
+
+	while ((pos = str.find(delimiter)) != std::string::npos) {
+		sWord = str.substr(0, pos);
+		if (sWord != "") {
+			words.push_back(sWord);
+		}
+		str.erase(0, pos + delimiter.length());
+	}
+	if (str != "")
+	{
+		words.push_back(str);
+	}
+
+	return words;
+}
+
+string ReplaceWordInString(string S1, string StringToReplace, string ReplaceTo) {
+	short pos = S1.find(StringToReplace);
+
+	while (pos != std::string::npos) {
+		S1 = S1.replace(pos, StringToReplace.length(), ReplaceTo);
+
+		pos = S1.find(StringToReplace);
+	}
+
+	return S1;
+}
+
+
+
+
+int main()
+{
+	string str1 = Readstring("Enter the string: ");
+	vector<string> words = SplitString(str1, " ");
+	string StringToReplace = Readstring("Enter the word to replace: ");
+	string ReplaceTo = Readstring("Enter the word to replace with: ");
+	ReplaceWordInString(str1, StringToReplace, ReplaceTo); 
+	str1 = ReplaceWordInString(str1, StringToReplace, ReplaceTo);
+	cout << "String after replacing the word: " << str1 << endl; 
+
+
+
+	system("pause>0");
+}
+
+
