@@ -220,14 +220,39 @@ sDate IncreseDateByOneDay(sDate date) {
 	}
 	return date;
 }
+bool IsDate1BeforeDate2(sDate date1, sDate date2) {
+		if (date1.Year != date2.Year)
+			return date1.Year < date2.Year;
+
+		if (date1.Month != date2.Month)
+			return date1.Month < date2.Month;
+
+		return date1.Day < date2.Day;
+}
+short GetDifferentDaysBetweenTwoDates(sDate date1, sDate date2, bool IncludeEndDay = false) {
+	short DifferentDays = 0;
+		while (IsDate1BeforeDate2(date1, date2)) {
+			date1 = IncreseDateByOneDay(date1);
+			DifferentDays++;
+		}
+	
+	return (IncludeEndDay ? DifferentDays + 1 : DifferentDays);
+}
+
+
 int main()
 {
-	short Day = ReadDay("Please enter a day: ");
-	short Month = ReadMonth("Please enter a month: ");
-	short year = ReadYear("Please enter a year: ");
-	sDate date = { Day, Month, year };
-	date = IncreseDateByOneDay(date);
-	cout << "Date after adding 1 day: " << date.Day << "/" << date.Month << "/" << date.Year << endl;
+	
+	sDate data1, data2;
+	 data1.Day = ReadDay("Please enter a day for data1: ");
+	 data1.Month = ReadMonth("Please enter a month for data1: ");
+	 data1.Year = ReadYear("Please enter a year for data1: ");
+	 data2.Day = ReadDay("Please enter a day for data2: ");
+	 data2.Month = ReadMonth("Please enter a month for data2: ");
+	 data2.Year = ReadYear("Please enter a year for data2: ");
+	 cout << "The different days between two dates is: " << GetDifferentDaysBetweenTwoDates(data1, data2) << endl;
+	
+
 
 	system("pause>0");
 	return 0;
