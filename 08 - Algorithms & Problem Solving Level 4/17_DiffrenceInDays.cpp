@@ -198,6 +198,7 @@ bool IslastDayInMonth(sDate date) {
 bool IslastMonth(sDate date) {
 	return date.Month == 12;
 }
+
 bool IslastDayInYear(sDate date) {
 	return IslastDayInMonth(date) && IslastMonth(date);
 }
