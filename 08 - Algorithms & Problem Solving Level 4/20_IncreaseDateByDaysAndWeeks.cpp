@@ -162,37 +162,14 @@ sDate IncreseDateByOneDay(sDate date) {
 }
 
 
-sDate IncreaseDateByXDays(sDate date, short Day) {
-	for (int i = 0; i < Day; i++) {
-		date = IncreseDateByOneDay(date);
-	}
-	return date;
-}
 
-sDate IncreaseDateByOneWeek(sDate date) {
-	return IncreaseDateByXDays(date, 7);
-}
-sDate IncreaseDateByXWeeks(sDate date, short Weeks) {
-	return IncreaseDateByXDays(date, Weeks * 7);
-}
 int main()
 {
 	
 	
 	sDate date = ReadFullDate();
-	cout << "The date you entered is: " << date.Day << "/" << date.Month << "/" << date.Year << endl;
-	short AddDays;
-	cout << "Please enter the number of days to add: ";
-	cin >> AddDays;
-	sDate newDate = IncreaseDateByXDays(date, AddDays);
-	short AddWeeks;
-	cout << "Please enter the number of weeks to add: ";
-	cin >> AddWeeks;
-	sDate AddWeeksDate = IncreaseDateByXWeeks(date, AddWeeks);
-	cout<< "The new date after adding " << AddDays << " days is: " << newDate.Day << "/" << newDate.Month << "/" << newDate.Year << endl;
-	cout << "The new date after adding " << AddWeeks << " weeks is: " << AddWeeksDate.Day << "/" << AddWeeksDate.Month << "/" << AddWeeksDate.Year << endl;
-
-
+	date = IncreseDateByOneDay(date);
+	cout << "The next date is: " << date.Day << "/" << date.Month << "/" << date.Year << endl;
 
 
 
